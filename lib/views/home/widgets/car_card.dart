@@ -131,7 +131,7 @@ return GestureDetector(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: blue,
-                padding: const EdgeInsets.symmetric(vertical: 14),
+                padding: const EdgeInsets.symmetric(vertical: 12),
               ),
              onPressed: () {
 Get.to(() => CarDetailsView(carId: car.id));},
