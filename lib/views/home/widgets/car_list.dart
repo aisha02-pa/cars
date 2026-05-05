@@ -10,19 +10,23 @@ class CarListSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
 
-    return Obx(() {
-      if (controller.isLoading.value) {
-        return const Center(child: CircularProgressIndicator());
-      }
+   return Obx(() {
+  if (controller.isLoading.value) {
+    return const Center(child: CircularProgressIndicator());
+  }
 
-      return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.carList.length,
-        itemBuilder: (context, index) {
-          return CarCard(car: controller.carList[index]);
-        },
-      );
-    });
+  if (controller.carList.isEmpty) {
+    return const Center(child: Text("No cars found"));
+  }
+
+  return ListView.builder(
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    itemCount: controller.carList.length,
+    itemBuilder: (context, index) {
+      return CarCard(car: controller.carList[index]);
+    },
+  );
+});
   }
 }

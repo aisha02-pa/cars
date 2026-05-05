@@ -8,7 +8,7 @@ class HeaderSection extends StatelessWidget {
     final blue = const Color(0xFF0B3A75);
 
     Widget _button(String text, IconData icon) {
-  return Expanded( // makes both buttons share space equally
+  return Expanded(
     child: ElevatedButton.icon(
       onPressed: () {},
       icon: Icon(icon, size: 18),
@@ -35,7 +35,6 @@ class HeaderSection extends StatelessWidget {
       child: Column(
         children: [
 
-          // 🔹 Top Row (logo + menu)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
@@ -45,8 +44,14 @@ class HeaderSection extends StatelessWidget {
                   "assets/logoheaderoyl.png",
                   height: 40,
                 ),
-                const Icon(Icons.menu, color: Colors.white),
-              ],
+Builder(
+  builder: (context) => IconButton(
+    icon: const Icon(Icons.menu, color: Colors.white),
+    onPressed: () {
+      Scaffold.of(context).openDrawer();
+    },
+  ),
+),              ],
             ),
           ),
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:oylcars/models/car_model.dart';
+import 'package:oylcars/views/cardetailsview.dart';
 
 class CarCard extends StatelessWidget {
   final CarModel car;
@@ -9,8 +11,11 @@ class CarCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final blue = const Color(0xFF0B3A75);
-
-    return Container(
+return GestureDetector(
+ onTap: () {
+  Get.to(() => CarDetailsView(carId: car.id));
+},
+    child:  Container(
       margin: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.grey[200],
@@ -18,15 +23,17 @@ class CarCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-
           // 🔹 IMAGE + AVAILABLE TAG
           Stack(
             children: [
-
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(20),
+                ),
                 child: Image.network(
-                  car.image,
+                  car.image.isNotEmpty
+                      ? car.image
+                      : "https://via.placeholder.com/300",
                   height: 180,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -38,14 +45,20 @@ class CarCard extends StatelessWidget {
                 top: 10,
                 left: 10,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Text(
                     "AVAILABLE",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -66,7 +79,7 @@ class CarCard extends StatelessWidget {
 
           // 🔹 NAME
           Text(
-            "${car.brand} ${car.name} ${car.year}",
+            "${car.brand} ${car.model} ${car.year}",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -120,13 +133,15 @@ class CarCard extends StatelessWidget {
                 backgroundColor: blue,
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
-              onPressed: () {},
+             onPressed: () {
+Get.to(() => CarDetailsView(carId: car.id));},
               child: const Text("View Details"),
             ),
           ),
         ],
       ),
-    );
+    ),
+);
   }
 
   Widget _tag(String text) {

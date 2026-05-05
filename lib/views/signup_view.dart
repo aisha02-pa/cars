@@ -57,20 +57,25 @@ class SignupView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  Text("OYL CARS",
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: blue)),
+                  Text(
+                    "OYL CARS",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: blue,
+                    ),
+                  ),
 
                   const SizedBox(height: 10),
 
-                  Text("Create Account",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: blue)),
+                  Text(
+                    "Create Account",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: blue,
+                    ),
+                  ),
 
                   const SizedBox(height: 20),
 
@@ -116,62 +121,67 @@ class SignupView extends StatelessWidget {
 
                   Row(
                     children: [
-                      Obx(() => Checkbox(
-                            value: controller.isSameNumber.value,
-                            onChanged: controller.toggleSameNumber,
-                            activeColor: blue,
-                          )),
-                      Text("Same as contact number",
-                          style: TextStyle(color: blue)),
+                      Obx(
+                        () => Checkbox(
+                          value: controller.isSameNumber.value,
+                          onChanged: controller.toggleSameNumber,
+                          activeColor: blue,
+                        ),
+                      ),
+                      Text(
+                        "Same as contact number",
+                        style: TextStyle(color: blue),
+                      ),
                     ],
                   ),
 
                   const SizedBox(height: 15),
 
                   // 🔹 Password
-                  Obx(() => TextFormField(
-                        controller: controller.passwordController,
-                        obscureText: controller.isPasswordHidden.value,
-                        validator: controller.validatePassword,
-                        style: TextStyle(color: blue),
-                        decoration: boxDecoration("Password", Icons.lock)
-                            .copyWith(
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              controller.isPasswordHidden.value
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: blue,
+                  Obx(
+                    () => TextFormField(
+                      controller: controller.passwordController,
+                      obscureText: controller.isPasswordHidden.value,
+                      validator: controller.validatePassword,
+                      style: TextStyle(color: blue),
+                      decoration: boxDecoration("Password", Icons.lock)
+                          .copyWith(
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                controller.isPasswordHidden.value
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: blue,
+                              ),
+                              onPressed: controller.togglePassword,
                             ),
-                            onPressed: controller.togglePassword,
                           ),
-                        ),
-                      )),
+                    ),
+                  ),
 
                   const SizedBox(height: 15),
 
                   // 🔹 Confirm Password
-                  Obx(() => TextFormField(
-                        controller: controller.confirmPasswordController,
-                        obscureText:
-                            controller.isConfirmPasswordHidden.value,
-                        validator: controller.validateConfirmPassword,
-                        style: TextStyle(color: blue),
-                        decoration:
-                            boxDecoration("Confirm Password", Icons.lock)
-                                .copyWith(
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              controller.isConfirmPasswordHidden.value
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: blue,
+                  Obx(
+                    () => TextFormField(
+                      controller: controller.confirmPasswordController,
+                      obscureText: controller.isConfirmPasswordHidden.value,
+                      validator: controller.validateConfirmPassword,
+                      style: TextStyle(color: blue),
+                      decoration: boxDecoration("Confirm Password", Icons.lock)
+                          .copyWith(
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                controller.isConfirmPasswordHidden.value
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: blue,
+                              ),
+                              onPressed: controller.toggleConfirmPassword,
                             ),
-                            onPressed:
-                                controller.toggleConfirmPassword,
                           ),
-                        ),
-                      )),
+                    ),
+                  ),
 
                   const SizedBox(height: 25),
 
@@ -185,16 +195,18 @@ class SignupView extends StatelessWidget {
                       ),
                       onPressed: () {
                         controller.signup(
-                        controller.nameController.text.trim(),
-                       controller.emailController.text.trim(),
-                         controller.whatsappController.text.trim(),
-                        controller.passwordController.text.trim()
+                          controller.nameController.text.trim(),
+                          controller.emailController.text.trim(),
+                          controller.contactController.text.trim(),
+                          controller.passwordController.text.trim(),
 
-
+                          controller.whatsappController.text.trim(),
                         );
                       },
-                      child: const Text("Sign Up",
-                          style: TextStyle(color: Colors.white)),
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
 
@@ -203,13 +215,14 @@ class SignupView extends StatelessWidget {
                   Center(
                     child: TextButton(
                       onPressed: () {
-Get.toNamed(AppRoutes.login);                      },
+                        Get.toNamed(AppRoutes.login);
+                      },
                       child: Text(
                         "Already have an account? Login",
                         style: TextStyle(color: blue),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

@@ -4,7 +4,7 @@ import 'package:oylcars/services/api_services.dart';
 
 class AuthController extends GetxController {
   final formKey = GlobalKey<FormState>();
-  final authapiservices=ApiService();
+  final authapiservices = ApiService();
 
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -90,23 +90,32 @@ class AuthController extends GetxController {
 
   // ================= LOCAL SIGNUP =================
 
+
+
   Future<void> signup(
     String name,
     String email,
     String phone,
     String password,
+    String whatsapp
   ) async {
     if (!formKey.currentState!.validate()) return;
 
     try {
       isLoading.value = true;
 
-      // await Future.delayed(const Duration(seconds: 2)); 
-      var response=ApiService.signup(name: name, email: email, phone: phone, password: password);
+      // await Future.delayed(const Duration(seconds: 2));
+      var response = ApiService.signup(
+        name: name,
+        email: email,
+        phone: phone,
+        password: password,
+        whatsapp: whatsapp
+      );
 
       Get.snackbar("Success", "Account created successfully");
 
-      Get.offAllNamed('/home');
+      // Get.offAllNamed('/home');
     } catch (e) {
       Get.snackbar("Error", "Something went wrong");
     } finally {
